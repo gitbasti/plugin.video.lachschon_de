@@ -65,8 +65,8 @@ def listVideos(url):
 
 def playVideo(url):
         content = getUrl(url)
-        youtubeID=content[content.find('http://www.youtube.com/embed/')+29:]
-        youtubeID=youtubeID[:youtubeID.find('?')]
+        mo = re.search("youtube.com/embed/(.*)\?", content)
+        youtubeID = mo.group(1)
         if xbox==True:
           fullData = "plugin://video/YouTube/?path=/root/video&action=play_video&videoid=" + youtubeID
         else:
